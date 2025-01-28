@@ -28,6 +28,7 @@ And Z-score values of 3 or greater are very unlikely. In order to search for out
 ## Interpretations of the Z-Score analysis.
 Using this purely statistical approach, I was able to determine that there were 140 out of 2512 data entries had characteristics of fraud, or 5.57% of the sample.
 After determining the cases of fraud using Z-Scores, I was able to determine that the city in the US with the most fraudulent cases was FortWorth, TX with a total of 7 cases in a dataset os 2412 throughout the United States. 
+
 ![!\[Image 1\](plots/.png)](plots/instances_of_fraud_by_city.png)
 
 Additionally, by using this Z-Score methodology, I was able to determine that there were 2 variables of interest in determining fraud, that showed a high number of events with Z-Scores larger than 3 in their respective distributions. They are "TransactionAmounts" and "LoginAttempts". Thinking about this logically, it makes sense that a very large withdrawl could indicate fraud, as well as a high number of login attempts could indicate difficulty inputting a password, and so could also indicate a fraudulent transaction. Below are 2D scatter plots of these two variables along with others where we can gain insight on the kinds of transactions that were flagged as fraud. A complete set of plots used for this portion of the analysis can be found in the plots folder [here](plots/).
