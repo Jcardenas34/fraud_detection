@@ -19,9 +19,7 @@ source setup.sh
 which will download the dataset for your use. From there run the [statistical_anamolies.ipynb](./statistical_anamolies.ipynb), and [fraud_detection_autoencoder.ipynb](./fraud_detection_autoencoder.ipynb) notebooks. They are heavily commented for your use.
 
 # Z-Score Analysis
-In statistics, there is a concept known as a Z-Score that assigns a value to each value in a distribution that will inform us as to how likely we are to randomly draw this value, known as a Z-Score.
-Since sampling distributions can be converted into gaussians, and so we can determine the likelihood of randomly sampling any given event. A Z-Score of 0 given to a value means that it lies perfectly at the mean of the distribution it was drawn from, and so it is highly likely that it would be drawn. But in the distribution, there are values that are drawn less often, and so can be called anamolous. All events with a Z-Score less than or equal to 2, represent about 95% of the values in that distribution. With this knowledge, we can state that values with a Z-Score larger than 2, can be more suspicious as they occur less often.
-And Z-score values of 3 or greater are very unlikely. In order to search for out of the ordinary credit/debit card transactions in this dataset, I took the Z-Score of each of the data points that were represented by continuous numerical values, if a given data feature had a Z-Score larger than 3, it was flagged as anamolous, and so flagged as fraud. Lets see what insights this choice brought.
+In statistics, there is a concept known as a Z-Score that represents how many standard deviations a value is from the mean of its distribution. If a sampling distribution can be converted into a gaussian, we can determine the likelihood of observing any given event by using a Z-Score. A Z-Score of 0 given to a value means that it lies perfectly at the mean of the distribution, and so it is highly likely that it would be observed. But values that are less probable have higher Z-Scores, and so Z-Scores can be used to flag data as anomalous. All events with a Z-Score within +-2 represent about 95% of the values in that distribution, and so data points with a Z score larger than this can be said to have a probability of being observed of about 5%. For events with Z-Scores within +-3, the probability of observance falls to about .03%. With this knowledge, we can state that values with a Z-Score larger than 2, occur infrequently, but events with a Z-score values of 3 or greater are extremely unlikely, unlikely enough to be suspicious. In this study, I flagged events as potentially fraudulent if any of their numerical features had a Z-Score > 3. Lets see what insights this choice revealed.
 
 
 
@@ -42,10 +40,11 @@ From these plots we can see a clear threshold at where the Z-Score of 3 is defin
 
 
 # Multi-Variate analysis using an Autoencoder
-Auto encoders provide a viable method to detect anamolies in data since they work on the idea of attempting to reconstruct the input passed to it as well as possible.
-In the case where we have a dataset with many "Ordinary" events, and a sparse amount of anamolous events, using an autoencoder makes sense. When the network is fed many examples of data that are not fraudulent, it can learn to predict the ordinary instances in such a way that anamolous data will be reconstructed poorly.
+Autoencoders provide an effective method for detecting anomalies in data by learning to reconstruct input data as accurately as possible. In the case where we have a dataset with many ordinary events, where only a small number are "anamolous", using an autoencoder makes sense. When the network is trained using many examples of ordinary data, it can learn to reconstruct the ordinary instances well, and anamolous data poorly.
 
-By using the Mean Squared Error (MSE) as a loss function we can use this value to compare the reconstruction quality of transaction features for fraudulent data. Since the network will learn to reconstruct events based on the vast majority of input examples which are presumed to be non-fraudulent, when it encounters a fraudulent case, it will have trouble in its reconstruction, and so will hae a large Mean Squared error, by specifying a threshold for the events MSE in our sample, we can set a boundary that will dictate weather a transaction is fraudulent or legitimate.
+By using the Mean Squared Error (MSE) as a loss function, the network will learn to reconstruct events based on the vast majority of input examples which are presumed to be non-fraudulent. Events with anamolous characteristics, will be reconstructed poorly, and so create an indicator by which we can detect fraud. By specifying a threshold for the MSE, we can create a boundary by which events above the threshold can be flagged as fraudulent.
+
+
 
 ![!\[Image 3\](plots/.png)](plots/MSE_of_events.png)
 
