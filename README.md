@@ -40,15 +40,15 @@ From these plots we can see a clear threshold at where the Z-Score of 3 is defin
 
 
 # Multi-Variate analysis using an Autoencoder
-Autoencoders provide an effective method for detecting anomalies in data by learning to reconstruct input data as accurately as possible. In the case where we have a dataset with many ordinary events, where only a small number are "anamolous", using an autoencoder makes sense. When the network is trained using many examples of ordinary data, it can learn to reconstruct the ordinary instances well, and anamolous data poorly.
+Autoencoders provide an effective method for detecting anomalies in data by learning to reconstruct input data as accurately as possible. In the case where we have a dataset with many ordinary events, where only a small number are "anomalous", using an autoencoder makes sense. When the network is trained using many examples of ordinary data, it can learn to reconstruct the ordinary instances well, and anomalous data poorly.
 
-By using the Mean Squared Error (MSE) as a loss function, the network will learn to reconstruct events based on the vast majority of input examples which are presumed to be non-fraudulent. Events with anamolous characteristics, will be reconstructed poorly, and so create an indicator by which we can detect fraud. By specifying a threshold for the MSE, we can create a boundary by which events above the threshold can be flagged as fraudulent.
+By using the Mean Squared Error (MSE) as a loss function, the network will learn to reconstruct events based on the vast majority of input examples which are presumed to be non-fraudulent. Events with anomalous characteristics will be reconstructed poorly, and so create an indicator by which we can detect fraud. By specifying a threshold for the MSE, we can create a boundary by which events above the threshold can be flagged as fraudulent.
 
 
 
-![!\[Image 3\](plots/.png)](plots/MSE_of_events.png)
+![!\[Image 3\](plots/.png)](plots/mse_zscore_AE.png)
 
-Here you can see that I have arbitrarily chosen the value of 2 to be the threshold of anamoly detection for the MSE, as we can see that a vast majority of the reconstructed feature vectors lie below 2, and so MSE values above two can be considered anamolous. 
+Here you can see that I have chosen the value of 2 to be the threshold of anomaly detection for the MSE. Here I transformed the MSE values into a z-score distribution to provide a statistically motivated way to select the anomaly threshold. We can see that a vast majority of the reconstructed feature vectors lie below 2, where 2 represents the boundary under which 95% of the data lie, and so MSE values above 2 can be considered anomalous. 
 
 ## Interpretations of the Multi-Variate analysis using an Autoencoder
 
@@ -56,3 +56,8 @@ A complete set of plots used for this portion of the analysis can be found in th
 | Transaction Amount Focus          | Login Attempts Focus           |
 |--------------------|--------------------|
 | ![!\[Image 4\](plots/.png)](autoencoder_plots/LoginAttempts_vs_TransactionWeekNumber.png) | ![!\[Image 5\](plots/.png)](autoencoder_plots/LoginAttempts_vs_AccountBalance.png)|
+
+
+# Multi-Variate analysis using a Variational Autoencoder
+
+Variational auto encoders provide an alternative way to perform anamoly detection by which the input that is trying to be reconstructed by the network is mapped onto a probability di
