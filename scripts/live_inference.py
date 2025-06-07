@@ -6,7 +6,7 @@ from fraud_detection.helpers import load_data_subset
 
 def main(args):
     '''
-    
+    Function that will evaluate a model on a dataset, and print out the fraud rate
     '''
 
     # Suppress any warnings about the naming of columns not being present at scaling time
