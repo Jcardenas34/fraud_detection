@@ -1,0 +1,6 @@
+Metadata-Version: 2.4
+Name: fraud_detection
+Version: 0.1.0
+Summary: A that detects fraud live using an auto encoder trained with pytorch
+Author-email: Juan Cardenas <cardenas.juan5453@gmail.com>
+Requires-Python: >=3.8
