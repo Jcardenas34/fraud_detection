@@ -18,6 +18,14 @@ source setup.sh
 ```
 which will download the dataset for your use. From there run the [statistical_anamolies.ipynb](./statistical_anamolies.ipynb), and [fraud_detection_autoencoder.ipynb](./fraud_detection_autoencoder.ipynb) notebooks. They are heavily commented for your use.
 
+## Docker
+This repo comes with a working docker contner so that a webserver that hosts the Autoencoder can take in data from a provided data set. Run the containers like such (Designed for a Jetson Nano Jetpack 4.5)
+```
+sudo docker build -t fraud-detection-nano .
+```
+```
+sudo docker run --runtime nvidia --security-opt seccomp=unconfined -p 8000:8000 fraud-detection-nano
+```
 # Z-Score Analysis
 In statistics, there is a concept known as a Z-Score that represents how many standard deviations a value is from the mean of its distribution. If a sampling distribution can be converted into a Gaussian, we can determine the likelihood of observing any given event by using a Z-Score. A Z-Score of 0 given to a value means that it lies perfectly at the mean of the distribution, and so it is highly likely that it would be observed. However, values that are less probable have higher Z-Scores, and so Z-Scores can be used to flag data as anomalous. All events with a Z-Score within +-2 represent about 95% of the values in that distribution, and so data points with a Z score larger than this can be said to have a probability of being observed of about 5%. For events with Z-Scores within +-3, the probability of observance falls to about .03%. With this knowledge, we can state that values with a Z-Score larger than 2, occur infrequently, but events with a Z-score value of 3 or greater are extremely unlikely, unlikely enough to be suspicious. In this study, I flagged events as potentially fraudulent if any of their numerical features had a Z-Score > 3. Let's see what insights this choice revealed.
 
