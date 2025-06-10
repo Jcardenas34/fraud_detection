@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Data Selector</title>
+  <script>
+    async function loadData() {
+      const res = await fetch('/data');
+      const data = await res.json();
+      const table = document.getElementById('data-table');
+
+      data.forEach((row, index) => {
+        const tr = document.createElement('tr');
+        Object.values(row).forEach(val => {
+          const td = document.createElement('td');
+          td.textContent = val;
+          tr.appendChild(td);
+        });
+
+        const btn = document.createElement('button');
+        btn.textContent = "Predict";
+        btn.onclick = () => sendPrediction(row);
+        const tdBtn = document.createElement('td');
+        tdBtn.appendChild(btn);
+        tr.appendChild(tdBtn);
+
+        table.appendChild(tr);
+      });
+    }
+
+    async function sendPrediction(row) {
+      const res = await fetch('/predict', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(row)
+      });
+      const result = await res.json();
+      alert("Fraud: " + result.fraud + ", Z-score: " + result.zscore);
+    }
+
+    window.onload = loadData;
+  </script>
+</head>
+<body>
+  <h1>Select a Data Row</h1>
+  <table border="1">
+    <thead>
+      <tr><th colspan="12">Data</th><th>Action</th></tr>
+      <tr><th>'TransactionType'</th><th>'Channel'</th> <th>'CustomerAge'</th><th>'CustomerOccupation'</th>
+       <th>'TransactionDuration'</th> <th>'LoginAttempts'</th> <th>'AccountBalance'</th>
+       <th>'PreviousTransactionDate'</th> <th>'TransactionDate_hour'</th>
+       <th>'TransactionWeekNumber'</th><th>'DaysSinceLastPurchase'</th></tr>
+    </thead>
+    <tbody id="data-table"></tbody>
+  </table>
+</body>
+</html>
