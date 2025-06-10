@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juan C. Cardenas, Ph.D. | Data Scientist</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --text-color: #333;
+            --light-bg: #f8f9fa;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-bg);
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1.5rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .profile-section {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        header img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 3px solid var(--secondary-color);
+            object-fit: cover;
+        }
+
+        nav {
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--secondary-color);
+        }
+
+        .banner {
+            margin-top: 80px;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('taptalks_1.jpg') no-repeat center center;
+            background-size: cover;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+        }
+
+        .banner-content {
+            max-width: 800px;
+            padding: 0 2rem;
+        }
+
+        .banner h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .banner p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        section {
+            background: white;
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        h2 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .skill-item {
+            background: var(--light-bg);
+            padding: 1rem;
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        .project-card {
+            background: var(--light-bg);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .project-card a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-block;
+            margin-top: 1rem;
+        }
+
+        .project-card a:hover {
+            text-decoration: underline;
+        }
+
+        .video-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
+            margin-top: 2rem;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .video-container video {
+            width: 100%;
+            display: block;
+        }
+
+        .image-container {
+            position: relative;
+            width: 100%;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .publication-card {
+            background: var(--light-bg);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .publication-card a {
+            color: var(--secondary-color);
+            text-decoration: none;
+        }
+
+        .publication-card a:hover {
+            text-decoration: underline;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background-color: var(--secondary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #2980b9;
+        }
+
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 1rem 0;
+        }
+
+        .social-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            nav {
+                margin-top: 1rem;
+            }
+
+            .video-section {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="profile-section">
+                <img src="{{ url_for('static', filename='images/webpage_profile_picture.jpeg' )}}" alt="Juan C. Cardenas">
+                <h1>Juan C. Cardenas, Ph.D.</h1>
+            </div>
+            <nav>
+                <a href="#about">About</a>
+                <a href="#projects">Projects</a>
+                <a href="#resume">Resume</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="banner">
+        <div class="banner-content">
+            <h1>Data Scientist & Physicist</h1>
+            <p>Transforming complex data into actionable insights through advanced analytics and machine learning</p>
+        </div>
+    </div>
+
+    <main>
+        <section id="about">
+            <h2>About Me</h2>
+            <p>I am a Ph.D. in High Energy Particle Physics from the University of Texas Arlington, with expertise in data analysis, machine learning, and scalable software development. My research focused on searching for a Charged Higgs Boson, where I developed and implemented sophisticated data analysis techniques and machine learning models.</p>
+            
+            <h3>Core Skills</h3>
+            <div class="skills-grid">
+                <div class="skill-item">Python</div>
+                <div class="skill-item">TensorFlow</div>
+                <div class="skill-item">Machine Learning</div>
+                <div class="skill-item">Data Analysis</div>
+                <div class="skill-item">Statistical Modeling</div>
+                <div class="skill-item">Deep Learning</div>
+                <div class="skill-item">Big Data</div>
+                <div class="skill-item">Scientific Computing</div>
+            </div>
+        </section>
+
+        <section id="input_data">
+            <h2>Fraud Detection</h2>
+            <p>Click here to input data for fraud detection.</p>
+            <div style="display: flex; gap: 1rem;">
+                <a href="input" target="_blank" class="button">View Online</a>
+            </div>
+        </section>
+
+        <section id="education">
+            <h2>Education</h2>
+            <div class="project-card">
+                <h3>Ph.D. in High Energy Particle Physics</h3>
+                <p>University of Texas Arlington</p>
+                <p>Research Focus: Search for Charged Higgs Boson in the H<sup>+</sup>&rarr;&tau;&nu; decay channel</p>
+                <p>Key Achievements:</p>
+                <ul>
+                    <li>Developed advanced statistical analysis techniques for particle physics data</li>
+                    <li>Implemented machine learning models for particle identification</li>
+                    <li>Led the statistical analysis portion of ATLAS collaboration research</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="research">
+            <h2>Research Experience</h2>
+            <div class="project-card">
+                <h3>ATLAS Collaboration Research</h3>
+                <p>Led statistical analysis for the search of Charged Higgs Boson in proton-proton collisions at √s = 13 TeV</p>
+                <p>Key Contributions:</p>
+                <ul>
+                    <li>Developed and implemented sophisticated data analysis techniques</li>
+                    <li>Created machine learning models for particle identification</li>
+                    <li>Collaborated with international research teams</li>
+                    <li>Published findings in high-impact journals</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="technical-skills">
+            <h2>Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-item">Python</div>
+                <div class="skill-item">TensorFlow</div>
+                <div class="skill-item">PyTorch</div>
+                <div class="skill-item">Scikit-learn</div>
+                <div class="skill-item">Pandas</div>
+                <div class="skill-item">NumPy</div>
+                <div class="skill-item">SQL</div>
+                <div class="skill-item">Git</div>
+                <div class="skill-item">Linux</div>
+                <div class="skill-item">Docker</div>
+                <div class="skill-item">AWS</div>
+                <div class="skill-item">Jupyter</div>
+            </div>
+            <div class="project-card">
+                <h3>Areas of Expertise</h3>
+                <ul>
+                    <li>Machine Learning & Deep Learning</li>
+                    <li>Statistical Analysis & Modeling</li>
+                    <li>Data Visualization</li>
+                    <li>Big Data Processing</li>
+                    <li>Scientific Computing</li>
+                    <li>High-Performance Computing</li>
+                    <li>Cloud Computing</li>
+                    <li>Version Control & CI/CD</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="projects">
+            <h2>Featured Projects</h2>
+            <div class="project-card">
+                <h3>Fraud Detection System</h3>
+                <p>Developed a sophisticated fraud detection system using statistical analysis and variational autoencoders on credit card transaction data. Implemented both traditional statistical methods and deep learning approaches for anomaly detection.</p>
+                <a href="https://github.com/Jcardenas34/fraud_detection">View Project →</a>
+            </div>
+
+            <div class="project-card">
+                <h3>Infectious Disease Analysis</h3>
+                <p>Conducted comprehensive analysis of disease prevalence in California counties using state-provided datasets. Developed regression models for case rate projections and implemented data visualization techniques.</p>
+                <a href="https://github.com/Jcardenas34/infectious_disease">View Project →</a>
+            </div>
+
+            <div class="project-card">
+                <h3>NASA Turbofan Engine Prognostics</h3>
+                <p>Implemented a Hidden Markov Model and various ML techniques to predict remaining useful life of jet engines using sensor data. This ongoing project demonstrates advanced time series analysis and predictive modeling capabilities.</p>
+                <a href="https://github.com/Jcardenas34/Predicting_Failure_NASA_Turbofan_Jet_Engine">View Project →</a>
+            </div>
+
+            <div class="project-card">
+                <h3>Liquid Argon Simulation</h3>
+                <p>Developed a physics-based simulation of liquid and solid argon using VPython to determine material characteristics. This project demonstrates the application of computational physics and data visualization techniques.</p>
+                <a href="https://github.com/Jcardenas34/lar_simulation">View Project →</a>
+            </div>
+
+            <h3>Simulation Demo</h3>
+            <div class="video-section">
+                <div class="video-container">
+                    <video autoplay muted controls>
+                        <source src="LAr_simulation.mp4" type="video/mp4">
+                        <source src="LAr_simulation~.mov" type="video/quicktime">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="image-container">
+                    <img src="{{ url_for('static', filename='images/taptalks_2.jpg' )}}" alt="H+->τν limits Run2">
+                </div>
+            </div>
+        </section>
+
+        <section id="publications">
+            <h2>Published Work</h2>
+            <div class="publication-card">
+                <h3>Recent Publication</h3>
+                <p>
+                    <a href="https://arxiv.org/abs/2412.17584">Search for a Charged Higgs Boson in the H<sup>+</sup>&rarr;&tau;&nu; decay channel in proton-proton collisions at &radic;s = 13 TeV with the ATLAS detector</a>
+                </p>
+                <p>Led the statistical analysis portion of the search for a charged Higgs Boson in the H<sup>+</sup>&rarr;&tau;&nu; decay channel in proton-proton collisions at &radic;s = 13 TeV with the ATLAS detector. This research demonstrates advanced statistical modeling and data analysis techniques in high-energy physics.</p>
+            </div>
+        </section>
+
+        <section id="resume">
+            <h2>Resume</h2>
+            <p>Download my detailed resume to learn more about my experience and qualifications:</p>
+            <div style="display: flex; gap: 1rem;">
+                <a href="docs/Resume_Juan_Cardenas.pdf" download class="button">Download PDF</a>
+                <a href="resume.html" target="_blank" class="button">View Online</a>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2>Contact</h2>
+            <p>I'm currently open to new opportunities in Data Science and Machine Learning. Let's connect!</p>
+            <div class="social-links">
+                <a href="mailto:cardenas.juan5453@gmail.com">Email</a>
+                <a href="https://www.linkedin.com/in/juan-cardenas-data-science-physics/">LinkedIn</a>
+                <a href="https://github.com/Jcardenas34">GitHub</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Juan C. Cardenas. All rights reserved.</p>
+        <img src="URL_QR_Code.png" width="100" height="100" alt="QR Code" style="margin-top: 1rem;">
+    </footer>
+</body>
+</html>
