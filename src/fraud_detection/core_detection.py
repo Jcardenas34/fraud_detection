@@ -1,11 +1,15 @@
 import torch
+import numpy.typing as npt
 from fraud_detection.evaluation_metrics import calculate_zscore, extract_mean_std_from_training_data
 from fraud_detection.helpers import load_scaling_object, load_model
 
 
-def detect_fraud(model_path, features, threshold=0.05):
+def detect_fraud(model_path: str, features: npt.NDArray, threshold:float = 0.05):
     '''
-    Will evaluate instances of fraud based on a threshold z-score
+    Autoencoder will evaluate the inputted features, and return 
+    a dictionary of information indicating "fraud": Bool, "zscore": float
+
+    
     '''
     data_path = './dataset/credit_card_fraud.h5'
 

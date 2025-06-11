@@ -43,7 +43,7 @@ def main(args):
 
 
     proportion_of_fraud = 100* counter / len(data_points)
-    print(f"Fraud Rate: {proportion_of_fraud}, expected ~5%")
+    print(f"Fraud Rate: {proportion_of_fraud}, expected ~2%")
     print(f"Fraud Count: {counter}")
 
 

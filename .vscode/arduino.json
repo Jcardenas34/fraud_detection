@@ -1,0 +1,17 @@
+{
+  "port": "/dev/cu.usbmodem141201",
+  "configuration": "",
+  "output": "build",
+  "board": "",
+  "programmer": "",
+  "useProgrammer": false,
+  "configurationRequired": false,
+  "monitorPortSettings": {
+    "port": "/dev/cu.usbmodem141201",
+    "baudRate": 115200,
+    "lineEnding": "\r\n",
+    "dataBits": 8,
+    "parity": "none",
+    "stopBits": "one"
+  }
+}
