@@ -1,14 +1,13 @@
 # Fraud Detection for Credit/Debit Card transactions
+An repo to compare the performance of various unsupervised learning models (Auto encoder, Variational Auto encoder, Isolation Forest) to flag anamolous credit card transactions using the (valakhorasani fraud dataset)[https://www.kaggle.com/datasets/valakhorasani/bank-transaction-dataset-for-fraud-detection]. 
 
-This repo presents the work done to perform statistical analysis on open source Credit/Debit card transaction data for fraud detection.
+# Motivation
+Detecting anamolies in high stakes transactions such as in credit card transations are critical in building trust between clients and providers. Fincncial firms often use a plethora of deep learning models to detect and sometimes anticipate fraudulent activity. My aim is to explore the the performance of traditional ML models, deep learning models and LLM driven anamoly detection to understand weather there is a meaningful difference in their ability to flag fraudulent activity, and maximize fraudulent activity rejection. 
 
-The original dataset for the project was obtained here
-https://www.kaggle.com/datasets/valakhorasani/bank-transaction-dataset-for-fraud-detection
+# Autoencoder
+ A purely statistical approach consisting of Z-Score analysis, as well as a more sophisticated approach to fraud detection using a Deep learning algorithm known as an Auto-encoder network.
 
-
-Two methods were exercised in this git repo, a purely statistical approach consisting of mostly Z-Score analysis, as well as a more sophisticated approach to fraud detection using a Deep learning algorithm known as an Auto-encoder network.
-
-## Using this repo
+## Quickstart
 This analysis was primarily conducted using Jupyter Notebooks, you will first have to download the git repo by running
 and can be run running
 ```
@@ -26,8 +25,10 @@ sudo docker build -t fraud-detection-nano .
 ```
 sudo docker run --runtime nvidia --security-opt seccomp=unconfined -p 8000:8000 fraud-detection-nano
 ```
-# Z-Score Analysis
-In statistics, there is a concept known as a Z-Score that represents how many standard deviations a value is from the mean of its distribution. If a sampling distribution can be converted into a Gaussian, we can determine the likelihood of observing any given event by using a Z-Score. A Z-Score of 0 given to a value means that it lies perfectly at the mean of the distribution, and so it is highly likely that it would be observed. However, values that are less probable have higher Z-Scores, and so Z-Scores can be used to flag data as anomalous. All events with a Z-Score within +-2 represent about 95% of the values in that distribution, and so data points with a Z score larger than this can be said to have a probability of being observed of about 5%. For events with Z-Scores within +-3, the probability of observance falls to about .03%. With this knowledge, we can state that values with a Z-Score larger than 2, occur infrequently, but events with a Z-score value of 3 or greater are extremely unlikely, unlikely enough to be suspicious. In this study, I flagged events as potentially fraudulent if any of their numerical features had a Z-Score > 3. Let's see what insights this choice revealed.
+
+# Fraud Rate Analysis
+## Autoencoders: Z-Score Analysis
+  Let's see what insights this choice revealed.
 
 
 
@@ -50,7 +51,7 @@ From these plots, we can see a clear threshold where the Z-Score of 3 is defined
 # Multi-variate analysis using an Autoencoder
 Autoencoders provide an effective method for detecting anomalies in data by learning to reconstruct input data as accurately as possible. In the case where we have a dataset with many ordinary events, where only a small number are "anomalous", using an autoencoder makes sense. When the network is trained using many examples of ordinary data, it can learn to reconstruct the ordinary instances well, and anomalous data poorly.
 
-By using the Mean Squared Error (MSE) as a loss function, the network will learn to reconstruct events based on the vast majority of input examples which are presumed to be non-fraudulent. Events with anomalous characteristics will be reconstructed poorly, and so create an indicator by which we can detect fraud. By specifying a threshold for the MSE, we can create a boundary by which events above the threshold can be flagged as fraudulent.
+By using the Mean Squared Error (MSE) as a loss function, the network will learn to reconstruct events based on the vast majority of input examples which are presumed to be non-fraudulent. Events with anomalous characteristics will be reconstructed poorly, and so create an indicator by which we can detect fraud. By specifying a threshold for the MSE, we can create a boundary by which events above the threshold can be flagged as fraudulent. In this study, I flagged events as potentially fraudulent if any of their numerical features had a Z-Score > 3.
 
 
 
