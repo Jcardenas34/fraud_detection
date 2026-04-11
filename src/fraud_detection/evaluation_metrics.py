@@ -38,7 +38,7 @@ def extract_mean_std_from_training_data( data_path:str, model_path: str ) -> Tup
     X_tensor = torch.tensor(X, dtype=torch.float32)
 
     # Loading the model
-    state_dict = torch.load(model_path,  map_location=torch.device('cpu'))
+    state_dict = torch.load(model_path,  map_location=torch.device('cuda'), weights_only=True)
 
 
     if "VAE" in model_path:

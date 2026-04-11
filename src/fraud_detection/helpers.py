@@ -35,7 +35,7 @@ def load_scaling_object(scalar_path: str) -> StandardScaler:
     return loaded_scaler
 
 
-def load_model(model_path:str, evaluation_arch:str="cpu") -> Autoencoder:
+def load_model(model_path:str, evaluation_arch:str="cuda") -> Autoencoder:
     '''
     Entry point for loading the model into memory for evaluation
     '''
@@ -45,7 +45,7 @@ def load_model(model_path:str, evaluation_arch:str="cpu") -> Autoencoder:
 
     try: 
         # Adjust 'cpu' parameter here if you want to evaluate using a cpu
-        state_dict = torch.load(model_path, map_location=torch.device(evaluation_arch))
+        state_dict = torch.load(model_path, map_location=torch.device(evaluation_arch), weights_only=True)
 
     except ValueError:
         if evaluation_arch not in ["cpu","gpu"]:
@@ -67,7 +67,7 @@ def load_model(model_path:str, evaluation_arch:str="cpu") -> Autoencoder:
 
     return model
 
-def load_trained_vae(model_path:str) -> tuple[VariationalAutoencoder, torch.device]:
+def load_trained_vae(model_path:str):# -> tuple[VariationalAutoencoder, torch.device]:
     '''
     Loads a trained Variational Autoencoder model from "model_path"
     and returns the model itself as well as the device type that it was 
