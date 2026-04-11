@@ -3,7 +3,7 @@ import torch.nn as nn
 import torch.optim as optim
 from torch.utils.data import DataLoader, TensorDataset
 import pandas as pd
-from fraud_detection.models import VariationalAutoencoder
+from fraud_detection.models import VariationalAutoencoder, IsolationForestModel
 from fraud_detection.loss_functions import loss_function
 from sklearn.preprocessing import StandardScaler, QuantileTransformer
 from fraud_detection.helpers import persistify_scaling_object
@@ -52,3 +52,11 @@ def train_vae(data_path, model_path, batch_size, epochs, learning_rate, num_work
 
     # Save the trained model
     torch.save(model.state_dict(), model_path)
+
+
+def train_IsolationForest(data_path, model_path, batch_size, epochs, learning_rate, num_workers, log_interval):
+    # Load and preprocess data
+    df = pd.read_hdf(data_path, key='fraud_dataset')
+    if_model = IsolationForestModel(expected_fraud_rate=.02).get_if_model()
+    if_model.fit_predict(df)
+

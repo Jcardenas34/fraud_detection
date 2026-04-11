@@ -1,5 +1,7 @@
+'''All models for comparing fraud detection performance'''
 import torch
 import torch.nn as nn
+from sklearn.ensemble import IsolationForest
 
 # Defining an autoencoder class to make calling the model simpler main function
 class Autoencoder(nn.Module):
@@ -110,3 +112,12 @@ class VariationalAutoencoder(nn.Module):
         z = self.reparameterize(mu, logvar)
         return self.decode(z), mu, logvar
     
+
+class IsolationForestModel():
+    '''
+    Insance of Isolation Forest for training
+    '''
+    def __init__(self, expected_fraud_rate:float):
+        self.expected_fraud_rate = expected_fraud_rate 
+    def get_if_model(self):
+        return IsolationForest(contamination=self.expected_fraud_rate, random_state=42)
